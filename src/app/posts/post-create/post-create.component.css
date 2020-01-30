@@ -1,0 +1,12 @@
+textarea,
+mat-form-field {
+  width: 100%;
+}
+
+.image-preview {
+  margin: 10px 0;
+}
+
+img {
+  width: 100%;
+}

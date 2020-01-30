@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-spinner style="margin: auto" *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Post Title">
+      <mat-error *ngIf="form.get('title').invalid">enter a title</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="fp.click()">Pick image</button>
+      <input style="visibility: hidden" type="file" #fp (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
+    <mat-form-field>
+      <textarea
+        matInput
+        formControlName="content"
+        placeholder="Post Content"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">enter a content</mat-error>
+    </mat-form-field>
+    <button
+      color="accent"
+      mat-raised-button
+      type="submit"
+      [disabled]="!form.valid">{{ mode === 'create' ? 'Save Post' : 'Update Post' }}</button>
+  </form>
+</mat-card>
+
+<!--// TDF-->
+<!--<mat-card>-->
+<!--  <mat-spinner style="margin: auto" *ngIf="isLoading"></mat-spinner>-->
+<!--  <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isLoading">-->
+<!--    <mat-form-field>-->
+<!--      <input-->
+<!--        matInput-->
+<!--        name="title"-->
+<!--        [ngModel]="post?.title"-->
+<!--        required-->
+<!--        placeholder="Post Title"-->
+<!--        #title="ngModel">-->
+<!--      <mat-error *ngIf="title.invalid">enter a tiltle</mat-error>-->
+<!--    </mat-form-field>-->
+<!--    <div>-->
+<!--      <button mat-stroked-button type="button" (click)="fp.click()">Pick image</button>-->
+<!--      <input style="visibility: hidden" type="file" #fp>-->
+<!--    </div>-->
+<!--    <mat-form-field>-->
+<!--      <textarea-->
+<!--        matInput-->
+<!--        name="content"-->
+<!--        [ngModel]="post?.content"-->
+<!--        required-->
+<!--        placeholder="Post Content"-->
+<!--        #content="ngModel"></textarea>-->
+<!--      <mat-error *ngIf="content.invalid">enter a content</mat-error>-->
+<!--    </mat-form-field>-->
+<!--    <button-->
+<!--      color="accent"-->
+<!--      mat-raised-button-->
+<!--      type="submit"-->
+<!--      [disabled]="!postForm.valid">{{ mode === 'create' ? 'Save Post' : 'Update Post' }}</button>-->
+<!--  </form>-->
+<!--</mat-card>-->
